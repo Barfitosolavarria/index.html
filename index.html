@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barfitos Calculadora</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: white;
+}
+
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #ff6600;
+}
+
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 18px;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+select, input[type="range"] {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.range-value {
+  text-align: center;
+  font-size: 22px;
+  margin-top: 10px;
+  color: #ff6600;
+}
+
+.resultado {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pack {
+  background: linear-gradient(135deg, #ff6600, #ff944d);
+  color: black;
+}
+
+.pack-box {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border-radius: 12px;
+  margin-top: 12px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.whatsapp { background: #25D366; color: white; }
+.instagram { background: #E1306C; color: white; }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>BARFITOS 🐶</h1>
+
+<div class="card">
+  <label>Tipo de perro</label>
+  <select id="tipo">
+    <option value="0.03">Adulto</option>
+    <option value="0.05">Cachorro</option>
+  </select>
+
+  <label style="margin-top:15px;">Peso (kg)</label>
+  <input type="range" min="1" max="50" value="10" id="peso" oninput="calcular()">
+
+  <div class="range-value" id="pesoValor">10 kg</div>
+
+  <div class="resultado" id="resultado"></div>
+</div>
+
+<div class="card pack">
+  <h3>🔥 Pack disponible</h3>
+
+  <div class="pack-box">
+    <strong>Pack 3kg Barfitos</strong><br>
+    $26.000
+    <div id="duracion" style="margin-top:8px;"></div>
+  </div>
+
+  <a class="btn whatsapp" id="btnWhats" href="#" target="_blank">
+    Comprar por WhatsApp
+  </a>
+
+  <a class="btn instagram" 
+     href="https://www.instagram.com/barfitos.olavarria?utm_source=qr&igsh=MmlldjNiY3RrYzZr" 
+     target="_blank">
+    Enviar DM por Instagram
+  </a>
+
+</div>
+
+</div>
+
+<script>
+function calcular() {
+  let peso = document.getElementById("peso").value;
+  let tipo = document.getElementById("tipo").value;
+
+  document.getElementById("pesoValor").innerText = peso + " kg";
+
+  let comida = peso * tipo * 1000;
+
+  document.getElementById("resultado").innerText =
+    "Necesita " + comida.toFixed(0) + "g por día 🐾";
+
+  let dias = 3000 / comida;
+
+  document.getElementById("duracion").innerText =
+    "Te dura aprox " + dias.toFixed(1) + " días";
+
+  let mensaje = "Hola! Tengo un perro de " + peso + "kg y necesita " + comida.toFixed(0) + "g diarios. El pack de 3kg le dura " + dias.toFixed(1) + " días. Quiero comprar Barfitos 🐶";
+
+  let url = "https://wa.me/5492384660264?text=" + encodeURIComponent(mensaje);
+
+  document.getElementById("btnWhats").href = url;
+}
+
+calcular();
+</script>
+
+</body>
+</html>
